@@ -27,11 +27,11 @@
 
 			// Initialize main DOM elements
 			var $imageViewerWrapper = $('<div>').appendTo($('<div>', { 'class' : 'imageviewer_wrapper' }).appendTo($('body')).hide()),
-			    $imageWrap 			= $('<div>', { 'class' : 'imagewrap' }).appendTo($imageViewerWrapper),
-			    $topbar 			= $('<div>', { 'class' : 'topbar' }).appendTo($imageViewerWrapper),
+			    $imageWrap          = $('<div>', { 'class' : 'imagewrap' }).appendTo($imageViewerWrapper),
+			    $topbar             = $('<div>', { 'class' : 'topbar' }).appendTo($imageViewerWrapper),
 			    $bottombar          = $('<div>', { 'class' : 'bottombar' }).appendTo($imageViewerWrapper),
-			    $prev               = $('<a>', 	 { 'class' : 'previous', 'html' : '<i>' }).appendTo($imageViewerWrapper),
-			    $next               = $('<a>', 	 { 'class' : 'next', 'html' : '<i>' }).appendTo($imageViewerWrapper),
+			    $prev               = $('<a>',   { 'class' : 'previous', 'html' : '<i>' }).appendTo($imageViewerWrapper),
+			    $next               = $('<a>',   { 'class' : 'next', 'html' : '<i>' }).appendTo($imageViewerWrapper),
 			    $fileinfo           = $('<div>', { 'class' : 'fileinfo', 'html' : '<div class="icon" /><span class="filename"></span>' }).appendTo($topbar),
 			    $extras             = $('<ul>',  { 'class' : 'extras' }).appendTo($topbar),
 			    $close              = $('<div>', { 'class' : 'close_wrap', 'html' : '<div title="Stäng" class="close" />' }).appendTo($topbar);
@@ -41,7 +41,7 @@
 			    $helperMainFrame    = $('<div>', { 'class' : 'zoomhelper'}).appendTo($helper),
 			    $frameWrapper       = $('<div>', { 'class' : 'zoomhelper_framewrapper' }).appendTo($helperMainFrame),
 			    $frame              = $('<div>', { 'class' : 'zoomhelper_frame' }).appendTo($helperMainFrame),
-		        $toolbar            = $('<div>', { 'class' : 'zoomhelper_toolbar'}).appendTo($helperMainFrame),
+			    $toolbar            = $('<div>', { 'class' : 'zoomhelper_toolbar'}).appendTo($helperMainFrame),
 			    $toolbar_minus      = $('<div>', { 'class' : 'icon-minus zoomhelper_toolbar_minus' }).appendTo($toolbar),
 			    $toolbar_plus       = $('<div>', { 'class' : 'icon-plus zoomhelper_toolbar_plus' }).appendTo($toolbar);
 			
