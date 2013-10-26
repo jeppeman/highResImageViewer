@@ -149,6 +149,9 @@
 				}
 			}
 
+			var mousePosX,
+			    mousePosY;
+
 			/**
 			* Mousedown function for helper frame as well as main image.
 			*/
