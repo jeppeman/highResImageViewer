@@ -41,8 +41,8 @@
 			    $helperMainFrame    = $('<div>', { 'class' : 'zoomhelper'}).appendTo($helper),
 			    $frameWrapper       = $('<div>', { 'class' : 'zoomhelper_framewrapper' }).appendTo($helperMainFrame),
 			    $frame              = $('<div>', { 'class' : 'zoomhelper_frame' }).appendTo($helperMainFrame),
-			   	$toolbar            = $('<div>', { 'class' : 'zoomhelper_toolbar'}).appendTo($helperMainFrame),
-		      	$toolbar_minus      = $('<div>', { 'class' : 'icon-minus zoomhelper_toolbar_minus' }).appendTo($toolbar),
+		        $toolbar            = $('<div>', { 'class' : 'zoomhelper_toolbar'}).appendTo($helperMainFrame),
+			    $toolbar_minus      = $('<div>', { 'class' : 'icon-minus zoomhelper_toolbar_minus' }).appendTo($toolbar),
 			    $toolbar_plus       = $('<div>', { 'class' : 'icon-plus zoomhelper_toolbar_plus' }).appendTo($toolbar);
 			
 
@@ -57,14 +57,14 @@
 			function imageMouseMove (e)
 			{
 				var frameWrap            = instance.data('helper').find('.zoomhelper_framewrapper'),
-					frame                = instance.data('helper').find('.zoomhelper_frame'),
-					image                = instance.data('currentImage'),
-					originalHeight       = image.data('originalHeight'),
-					originalWidth        = image.data('originalWidth'),
-					helperOriginalHeight = image.data('helperOriginalHeight'),
-					helperOriginalWidth  = image.data('helperOriginalWidth'),
-					imageLeft            = parseInt($(this).css('left').split('px')[0]),
-					imageTop             = parseInt($(this).css('top').split('px')[0]);
+				    frame                = instance.data('helper').find('.zoomhelper_frame'),
+				    image                = instance.data('currentImage'),
+				    originalHeight       = image.data('originalHeight'),
+				    originalWidth        = image.data('originalWidth'),
+				    helperOriginalHeight = image.data('helperOriginalHeight'),
+				    helperOriginalWidth  = image.data('helperOriginalWidth'),
+				    imageLeft            = parseInt($(this).css('left').split('px')[0]),
+				    imageTop             = parseInt($(this).css('top').split('px')[0]);
 
 				if ($(this).hasClass('mousedown'))
 				{
@@ -102,9 +102,9 @@
 			{
 				var frameWrap               = instance.data('helper').find('.zoomhelper_framewrapper'),
 				    image                   = instance.data('currentImage'),
-			        originalHeight          = image.data('originalHeight'),
+				    originalHeight          = image.data('originalHeight'),
 				    originalWidth           = image.data('originalWidth'),
-			        helperOriginalHeight    = image.data('helperOriginalHeight'),
+				    helperOriginalHeight    = image.data('helperOriginalHeight'),
 				    helperOriginalWidth     = image.data('helperOriginalWidth'),
 				    frameWrapLeftBorder     = parseInt(frameWrap.css('border-left-width').split('px')[0]),
 				    frameWrapRightBorder    = parseInt(frameWrap.css('border-right-width').split('px')[0]),
@@ -193,8 +193,8 @@
 			{
 				var image           = instance.data('currentImage'),
 				    maxHeight       = image.data('maxHeight'),
-			        maxWidth        = image.data('maxWidth'),
-			        minHeight       = image.data('minHeight'),
+				    maxWidth        = image.data('maxWidth'),
+				    minHeight       = image.data('minHeight'),
 				    minWidth        = image.data('minWidth'),
 				    animationHeight = image.data('animationHeight'),
 				    animationWidth  = image.data('animationWidth');
@@ -340,28 +340,20 @@
 					'right' : helperOriginalWidth-(frameAnimateOpts.left+frameAnimateOpts.width)+5
 				}
 
-				frame
-					.stop()
-					.animate(frameAnimateOpts);
+				frame.stop().animate(frameAnimateOpts);
 
-				frameWrap
-					.stop()
-					.animate({	
-							'height' : frameAnimateOpts.height+1,
-							'width' : frameAnimateOpts.width,			
-							'border-left-width' : borderDimensions.left+'px',
-							'border-top-width' : borderDimensions.top+'px',
-							'border-right-width' : borderDimensions.right+'px',
-							'border-bottom-width' : borderDimensions.bottom+'px'
-						});
+				frameWrap.stop().animate({	
+					'height' : frameAnimateOpts.height+1,
+					'width' : frameAnimateOpts.width,			
+					'border-left-width' : borderDimensions.left+'px',
+					'border-top-width' : borderDimensions.top+'px',
+					'border-right-width' : borderDimensions.right+'px',
+					'border-bottom-width' : borderDimensions.bottom+'px'
+				});
 
-				image
-					.parent('div')
-						.stop()
-						.animate(imageParentAnimateOpts);
-				image
-					.stop()
-					.animate(imageAnimateOpts);		
+				image.parent('div').stop().animate(imageParentAnimateOpts);
+				
+				image.stop().animate(imageAnimateOpts);		
 			}
 
 			/**
@@ -372,19 +364,19 @@
 				if (typeof(imageHeightAdder) == undefined || typeof(imageWidthAdder) == undefined) return;
 
 				var imageAnimateOpts        = {}, 
-					imageParentAnimateOpts  = {}, 
-					frameAnimateOpts        = {},
-					borderDimensions        = {},
-					image                   = instance.data('currentImage'),
-					hiddenAreas             = image.data('hiddenAreas'),
-					helperImage             = image.data('helperImage'),
-					originalHeight          = image.data('originalHeight'),
-					originalWidth           = image.data('originalWidth'),
-					helperOriginalHeight    = image.data('helperOriginalHeight'),
-					helperOriginalWidth     = image.data('helperOriginalWidth'),
-					frame                   = instance.data('helper').find('.zoomhelper_frame'),
-					frameWrap               = instance.data('helper').find('.zoomhelper_framewrapper'),
-					imageWrapMaxHeight      = parseInt(instance.data('imageWrap').css('max-height').split('px')[0]);
+				    imageParentAnimateOpts  = {}, 
+				    frameAnimateOpts        = {},
+				    borderDimensions        = {},
+				    image                   = instance.data('currentImage'),
+				    hiddenAreas             = image.data('hiddenAreas'),
+				    helperImage             = image.data('helperImage'),
+				    originalHeight          = image.data('originalHeight'),
+				    originalWidth           = image.data('originalWidth'),
+				    helperOriginalHeight    = image.data('helperOriginalHeight'),
+				    helperOriginalWidth     = image.data('helperOriginalWidth'),
+				    frame                   = instance.data('helper').find('.zoomhelper_frame'),
+				    frameWrap               = instance.data('helper').find('.zoomhelper_framewrapper'),
+				    imageWrapMaxHeight      = parseInt(instance.data('imageWrap').css('max-height').split('px')[0]);
 
 				if (image.height()+imageHeightAdder < imageWrapMaxHeight && image.width()+imageWidthAdder < $(window).width()*0.98) {
 					imageAnimateOpts = {
@@ -451,29 +443,20 @@
 					'right' : helperOriginalWidth-(frameAnimateOpts.left+frameAnimateOpts.width)+5
 				};
 
-				frame
-					.stop()
-					.animate(frameAnimateOpts);
+				frame.stop().animate(frameAnimateOpts);
 
-
-				frameWrap
-					.stop()
-					.animate({	
-							'height' : frameAnimateOpts.height+1,
-							'width' : frameAnimateOpts.width,			
-							'border-left-width' : borderDimensions.left+'px',
-							'border-top-width' : borderDimensions.top+'px',
-							'border-right-width' : borderDimensions.right+'px',
-							'border-bottom-width' : borderDimensions.bottom+'px'
-						});
+				frameWrap.stop().animate({	
+					'height' : frameAnimateOpts.height+1,
+					'width' : frameAnimateOpts.width,			
+					'border-left-width' : borderDimensions.left+'px',
+					'border-top-width' : borderDimensions.top+'px',
+					'border-right-width' : borderDimensions.right+'px',
+					'border-bottom-width' : borderDimensions.bottom+'px'
+				});
 										
-				image
-					.parent('div')
-						.stop()
-						.animate(imageParentAnimateOpts);
-				image
-					.stop()
-					.animate(imageAnimateOpts);	
+				image.parent('div').stop().animate(imageParentAnimateOpts);
+
+				image.stop().animate(imageAnimateOpts);	
 			}
 
 			function minusClick() 
