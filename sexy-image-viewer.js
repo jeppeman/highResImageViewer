@@ -178,12 +178,12 @@
 			*/
 			function handler(e) 
 			{
-				var delta = (browser == 'firefox' ? e.originalEvent.detail : e.originalEvent.wheelDelta);
-				if((delta <= 0 && browser != 'firefox') || (delta > 0 && browser == 'firefox')) 
+				var delta = (e.originalEvent.detail ? e.originalEvent.detail : e.originalEvent.wheelDelta);
+				if((delta <= 0 && e.originalEvent.wheelDelta) || (delta > 0 && e.originalEvent.detail)) 
 				{
 					zoomOut(zoomValues(1)[0], zoomValues(1)[1]);
 				}
-				else if ((delta > 0 && browser != 'firefox') || (delta <= 0 && browser == 'firefox'))
+				else if ((delta > 0 && e.originalEvent.wheelDelta) || (delta <= 0 && e.originalEvent.detail))
 				{				         
 					zoomIn(zoomValues(0)[0], zoomValues(0)[1])
 				}
@@ -808,27 +808,3 @@
 		}    
 	}
 })(jQuery);
-
-var browser = (function() {
- 	if (navigator.userAgent) {
- 		if (String.prototype.match) {
-				// Use match()
-				
-				var n = navigator.userAgent.split(" ");
-				if (n[n.length - 1].match("Firefox/*")) return "firefox";
-				else if (n[n.length - 1].match("Chrome/*")) return "chrome";
-				else if (n[n.length - 2].match("Chrome/*")) return "chrome";
-				else if (n[n.length - 1].match("Safari/*")) return "safari";
-				else if (navigator.userAgent.match("MSIE 9.*")) return "ie9";
-			}
-			
-			var n = navigator.userAgent.split("(")[1].split(")")[0].split(";");
-			for (var i = 0; i < n.length; i++) {
-				if (n[i] == " MSIE 8.0" || n[i] == "MSIE 8.0") return "ie8";
-				else if (n[i] == " MSIE 7.0" || n[i] == "MSIE 7.0") return "ie7";
-				else if (n[i] == " MSIE 6.0" || n[i] == "MSIE 6.0") return "ie6";
-			}
-		}
-		
-		return "unknown";
-	})();
