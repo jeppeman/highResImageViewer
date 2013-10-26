@@ -1,0 +1,35 @@
+.imageviewer_wrapper *, .zoomhelper_wrapper * { -moz-box-sizing: content-box; box-sizing: content-box; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none;}
+.imageviewer_wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: table; background: rgba(0, 0, 0, 0.64); z-index: 200; overflow: scroll; }
+.ie8 .imageviewer_wrapper { background: transparent; filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000); zoom: 1;/*AARRGGBB*/ }
+.imageviewer_wrapper > div { display: table-cell; vertical-align: middle; text-align: center; }
+.imageviewer_wrapper > div > a:active { background: none;}
+.imageviewer_wrapper > div > a { opacity: 0.4; transition: opacity 0.25s linear; -o-transition: opacity 0.25s linear; -moz-transition: opacity 0.25s linear; -webkit-transition: opacity 0.25s linear; }
+.imageviewer_wrapper > div > a:hover { opacity: 1;}
+.imageviewer_wrapper > div > a.previous { position: absolute; top: 50%; margin-top: -22px; left: 50px; cursor: pointer; display: block; height: 45px; width: 27px;}
+.imageviewer_wrapper > div > a.next { position: absolute; top: 50%; margin-top: -22px; right: 50px; cursor: pointer; height: 45px; width: 27px;}
+.imageviewer_wrapper > div > a.previous i { display: block; height: 100%; width: 100%; background-image: url("../img/misc.png"); background-repeat: no-repeat; background-size: auto auto; background-position: -585px -75px;}
+.imageviewer_wrapper > div > a.next i {  display: block; height: 100%; width: 100%; background-image: url("../img/misc.png"); background-repeat: no-repeat; background-size: auto auto; background-position: -501px -75px;}
+.imageviewer_wrapper > div > div.imagewrap { min-height: 700px; min-width: 800px; max-height:850px; overflow: hidden; max-width: 98%; margin: 0px auto; position: relative;}
+.imageviewer_wrapper > div > div.imagewrap.loading { background: url("/!shared/img/ajax-loader-2.gif") no-repeat center center;}
+.imageviewer_wrapper > div > div > img { margin: 0px auto; position: absolute; top: 0; left: 0; } 
+.imageviewer_wrapper > div > div.topbar { position: absolute; top: 0; left: 0; width: 100%; height: 40px; background: #000; display: table;}
+.imageviewer_wrapper > div > div.bottombar { position: absolute; bottom: 0;  left: 0; width: 100%; height: 40px; background: #000; display: block; }
+.imageviewer_wrapper > div > div.topbar div { display: table-cell; vertical-align: middle;}
+.imageviewer_wrapper > div > div.topbar div.icon { float: right; margin-right: 40px; cursor: pointer;}
+.imageviewer_wrapper > div > div.topbar ul.extras { display: inline-block; height: 100%; float: left; margin-left: 15px; list-style-type: none; }
+.imageviewer_wrapper > div > div.topbar ul.extras li { display: inline-block; }
+.imageviewer_wrapper > div > div.topbar .fileinfo { display: inline-block; float:left; margin-top: 8px; margin-left: 300px; text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2); color: white;}
+.imageviewer_wrapper > div > div.topbar .fileinfo .icon { margin-right: 10px; float: left; background-image: url("../img/blue-document-pdf.png"); height: 16px; width: 16px; }
+.imageviewer_wrapper > div > div.topbar .close_wrap { width: 200px;}
+.imageviewer_wrapper > div > div.topbar div.close { float: left; background-image: url("../img/crossclose.png"); height: 11px; width: 13px; cursor: pointer; }
+#abyss-wrapper { width: 100%; height: 100%; transition: transform 0.25s linear; -o-transition: -o-transform 0.25s linear; -moz-transition: -moz-transform 0.25s linear; -webkit-transition: -webkit-transform 0.25s linear; }
+#abyss-wrapper.abyssed { transform: scale(0.7); -o-transform: scale(0.7); -moz-transform: scale(0.7); -webkit-transform: scale(0.7); }
+
+.zoomhelper_wrapper { position : fixed; height : auto; width : auto; top : 80px; left : 40px; z-index : 9999; padding-bottom: 13px; overflow: hidden;}
+.zoomhelper { position: relative; height: 100%; width: 100%; }
+.zoomhelper img { border : 2px solid black; border-bottom : 20px solid black; border-top: 20px solid black; }
+.zoomhelper_toolbar {position : absolute; bottom : -13px;height : 20px; width : 100%; background : black; }
+.zoomhelper_toolbar_minus { float : left; height : 100%; width : 30px; color : white; line-height : 20px; margin-left : 10px; cursor : pointer; }
+.zoomhelper_toolbar_plus { float : right; height : 100%; width : 30px; color : white; line-height : 20px; margin-right : 10px; cursor : pointer; text-align: right;}
+.zoomhelper_frame { position: absolute; top: 20px; left: 2px; border: 1px solid white; overflow: hidden; background-color: rgba(255,255,255,0);}
+.zoomhelper_framewrapper { position: absolute; border: 0px solid rgba(0,0,0,0.5); top: 20px; left: 2px}
