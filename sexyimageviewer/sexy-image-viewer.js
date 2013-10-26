@@ -1,8 +1,8 @@
 /** 
  *   ____________________________________________
- *  |                  TODO						 |
+ *  |                  TODO                      |
  *  | 1. Finish helper.                          |
- *  | 2. Clean this mess up. (!) 				 |
+ *  | 2. Clean this mess up. (!)                 |
  *  |____________________________________________|
  *
  */
@@ -27,29 +27,27 @@
 
 			// Initialize main DOM elements
 			var $imageViewerWrapper = $('<div>').appendTo($('<div>', { 'class' : 'imageviewer_wrapper' }).appendTo($('body')).hide()),
-				$imageWrap 			= $('<div>', { 'class' : 'imagewrap' }).appendTo($imageViewerWrapper),
-				$topbar 			= $('<div>', { 'class' : 'topbar' }).appendTo($imageViewerWrapper),
-				$bottombar 			= $('<div>', { 'class' : 'bottombar' }).appendTo($imageViewerWrapper),
-				$prev 				= $('<a>', 	 { 'class' : 'previous', 'html' : '<i>' }).appendTo($imageViewerWrapper),
-				$next 				= $('<a>', 	 { 'class' : 'next', 'html' : '<i>' }).appendTo($imageViewerWrapper),
-				$fileinfo 			= $('<div>', { 'class' : 'fileinfo', 'html' : '<div class="icon" /><span class="filename"></span>' }).appendTo($topbar),
-				$extras 			= $('<ul>',  { 'class' : 'extras' }).appendTo($topbar),
-				$close 				= $('<div>', { 'class' : 'close_wrap', 'html' : '<div title="Stäng" class="close" />' }).appendTo($topbar);
+			    $imageWrap 			= $('<div>', { 'class' : 'imagewrap' }).appendTo($imageViewerWrapper),
+			    $topbar 			= $('<div>', { 'class' : 'topbar' }).appendTo($imageViewerWrapper),
+			    $bottombar          = $('<div>', { 'class' : 'bottombar' }).appendTo($imageViewerWrapper),
+			    $prev               = $('<a>', 	 { 'class' : 'previous', 'html' : '<i>' }).appendTo($imageViewerWrapper),
+			    $next               = $('<a>', 	 { 'class' : 'next', 'html' : '<i>' }).appendTo($imageViewerWrapper),
+			    $fileinfo           = $('<div>', { 'class' : 'fileinfo', 'html' : '<div class="icon" /><span class="filename"></span>' }).appendTo($topbar),
+			    $extras             = $('<ul>',  { 'class' : 'extras' }).appendTo($topbar),
+			    $close              = $('<div>', { 'class' : 'close_wrap', 'html' : '<div title="Stäng" class="close" />' }).appendTo($topbar);
 			
 			// Initialize DOM elements for helper
-			var	$helper 			= $('<div>', { 'class' : 'zoomhelper_wrapper' }).appendTo($imageViewerWrapper).hide(),
-				$helperMainFrame 	= $('<div>', { 'class' : 'zoomhelper'}).appendTo($helper),
-			    $frameWrapper 		= $('<div>', { 'class' : 'zoomhelper_framewrapper' }).appendTo($helperMainFrame),
-			    $frame 				= $('<div>', { 'class' : 'zoomhelper_frame' }).appendTo($helperMainFrame),
-				$toolbar 			= $('<div>', { 'class' : 'zoomhelper_toolbar'}).appendTo($helperMainFrame),
-				$toolbar_minus 		= $('<div>', { 'class' : 'icon-minus zoomhelper_toolbar_minus' }).appendTo($toolbar),
-				$toolbar_plus 		= $('<div>', { 'class' : 'icon-plus zoomhelper_toolbar_plus' }).appendTo($toolbar);
-
-				//Bindings
+			var $helper             = $('<div>', { 'class' : 'zoomhelper_wrapper' }).appendTo($imageViewerWrapper).hide(),
+			    $helperMainFrame    = $('<div>', { 'class' : 'zoomhelper'}).appendTo($helper),
+			    $frameWrapper       = $('<div>', { 'class' : 'zoomhelper_framewrapper' }).appendTo($helperMainFrame),
+			    $frame              = $('<div>', { 'class' : 'zoomhelper_frame' }).appendTo($helperMainFrame),
+			   	$toolbar            = $('<div>', { 'class' : 'zoomhelper_toolbar'}).appendTo($helperMainFrame),
+		      	$toolbar_minus      = $('<div>', { 'class' : 'icon-minus zoomhelper_toolbar_minus' }).appendTo($toolbar),
+			    $toolbar_plus       = $('<div>', { 'class' : 'icon-plus zoomhelper_toolbar_plus' }).appendTo($toolbar);
 			
 
 			//======================================================//
-			//					 FUNCTIONALITY 					    //
+			//                   FUNCTIONALITY                      //
 			//======================================================//
 
 			/**
@@ -58,15 +56,15 @@
 			*/
 			function imageMouseMove (e)
 			{
-				var frameWrap 			 = instance.data('helper').find('.zoomhelper_framewrapper'),
-					frame 				 = instance.data('helper').find('.zoomhelper_frame'),
-					image 				 = instance.data('currentImage'),
-					originalHeight 		 = image.data('originalHeight'),
-					originalWidth 		 = image.data('originalWidth'),
+				var frameWrap            = instance.data('helper').find('.zoomhelper_framewrapper'),
+					frame                = instance.data('helper').find('.zoomhelper_frame'),
+					image                = instance.data('currentImage'),
+					originalHeight       = image.data('originalHeight'),
+					originalWidth        = image.data('originalWidth'),
 					helperOriginalHeight = image.data('helperOriginalHeight'),
 					helperOriginalWidth  = image.data('helperOriginalWidth'),
-					imageLeft 			 = parseInt($(this).css('left').split('px')[0]),
-					imageTop 			 = parseInt($(this).css('top').split('px')[0]);
+					imageLeft            = parseInt($(this).css('left').split('px')[0]),
+					imageTop             = parseInt($(this).css('top').split('px')[0]);
 
 				if ($(this).hasClass('mousedown'))
 				{
@@ -102,20 +100,20 @@
 			*/
 			function frameMouseMove (e)
 			{
-				var	frameWrap 				= instance.data('helper').find('.zoomhelper_framewrapper'),
-					image 					= instance.data('currentImage'),
-					originalHeight 			= image.data('originalHeight'),
-					originalWidth 			= image.data('originalWidth'),
-					helperOriginalHeight 	= image.data('helperOriginalHeight'),
-					helperOriginalWidth 	= image.data('helperOriginalWidth'),
-					frameWrapLeftBorder 	= parseInt(frameWrap.css('border-left-width').split('px')[0]),
-					frameWrapRightBorder 	= parseInt(frameWrap.css('border-right-width').split('px')[0]),
-					frameWrapTopBorder 		= parseInt(frameWrap.css('border-top-width').split('px')[0]),
-					frameWrapBottomBorder 	= parseInt(frameWrap.css('border-bottom-width').split('px')[0]),
-					frameLeft 				= parseInt($(this).css('left').split('px')[0]),
-					frameTop 				= parseInt($(this).css('top').split('px')[0]),
-					imageLeft 				= parseInt(image.css('left').split('px')[0]),
-					imageTop 				= parseInt(image.css('top').split('px')[0]);
+				var frameWrap               = instance.data('helper').find('.zoomhelper_framewrapper'),
+				    image                   = instance.data('currentImage'),
+			        originalHeight          = image.data('originalHeight'),
+				    originalWidth           = image.data('originalWidth'),
+			        helperOriginalHeight    = image.data('helperOriginalHeight'),
+				    helperOriginalWidth     = image.data('helperOriginalWidth'),
+				    frameWrapLeftBorder     = parseInt(frameWrap.css('border-left-width').split('px')[0]),
+				    frameWrapRightBorder    = parseInt(frameWrap.css('border-right-width').split('px')[0]),
+				    frameWrapTopBorder      = parseInt(frameWrap.css('border-top-width').split('px')[0]),
+				    frameWrapBottomBorder   = parseInt(frameWrap.css('border-bottom-width').split('px')[0]),
+				    frameLeft               = parseInt($(this).css('left').split('px')[0]),
+				    frameTop                = parseInt($(this).css('top').split('px')[0]),
+				    imageLeft               = parseInt(image.css('left').split('px')[0]),
+				    imageTop                = parseInt(image.css('top').split('px')[0]);
 
 				if ($(this).hasClass('mousedown'))
 				{
@@ -193,13 +191,13 @@
 			*/
 			function zoomValues(val)
 			{
-				var image 			= instance.data('currentImage'),
-					maxHeight 		= image.data('maxHeight'),
-					maxWidth 		= image.data('maxWidth'),
-					minHeight 		= image.data('minHeight'),
-					minWidth 		= image.data('minWidth'),
-					animationHeight = image.data('animationHeight'),
-					animationWidth 	= image.data('animationWidth');
+				var image           = instance.data('currentImage'),
+				    maxHeight       = image.data('maxHeight'),
+			        maxWidth        = image.data('maxWidth'),
+			        minHeight       = image.data('minHeight'),
+				    minWidth        = image.data('minWidth'),
+				    animationHeight = image.data('animationHeight'),
+				    animationWidth  = image.data('animationWidth');
 
 				if (val > 0)
 				{
@@ -256,20 +254,20 @@
 			{
 				if (typeof(imageHeightAdder) == undefined || typeof(imageWidthAdder) == undefined) return;
 
-				var imageAnimateOpts 		= {}, 
-					imageParentAnimateOpts  = {}, 
-					frameAnimateOpts 		= {},
-					borderDimensions 		= {},
-					image 					= instance.data('currentImage'),
-					hiddenAreas 			= image.data('hiddenAreas'),
-					helperImage 			= image.data('helperImage'),
-					originalHeight 			= image.data('originalHeight'),
-					originalWidth 			= image.data('originalWidth'),
-					helperOriginalHeight 	= image.data('helperOriginalHeight'),
-					helperOriginalWidth 	= image.data('helperOriginalWidth'),
-					frame 					= $helper.find('.zoomhelper_frame'),
-					frameWrap 				= $helper.find('.zoomhelper_framewrapper'),
-					imageWrapMaxHeight 		= parseInt($imageWrap.css('max-height').split('px')[0]);
+				var imageAnimateOpts        = {}, 
+				    imageParentAnimateOpts  = {}, 
+				    frameAnimateOpts        = {},
+				    borderDimensions        = {},
+				    image                   = instance.data('currentImage'),
+				    hiddenAreas             = image.data('hiddenAreas'),
+				    helperImage             = image.data('helperImage'),
+				    originalHeight          = image.data('originalHeight'),
+				    originalWidth           = image.data('originalWidth'),
+				    helperOriginalHeight    = image.data('helperOriginalHeight'),
+				    helperOriginalWidth     = image.data('helperOriginalWidth'),
+				    frame                   = instance.data('helper').find('.zoomhelper_frame'),
+				    frameWrap               = instance.data('helper').find('.zoomhelper_framewrapper'),
+				    imageWrapMaxHeight      = parseInt(instance.data('imageWrap').css('max-height').split('px')[0]);
 
 				if (image.height()+imageHeightAdder < imageWrapMaxHeight && image.width()+imageWidthAdder < $(window).width()*0.98) {
 					imageAnimateOpts = {
@@ -373,20 +371,20 @@
 			{
 				if (typeof(imageHeightAdder) == undefined || typeof(imageWidthAdder) == undefined) return;
 
-				var imageAnimateOpts 		= {}, 
-					imageParentAnimateOpts 	= {}, 
-					frameAnimateOpts 		= {},
-					borderDimensions 		= {},
-					image 					= instance.data('currentImage'),
-					hiddenAreas 			= image.data('hiddenAreas'),
-					helperImage 			= image.data('helperImage'),
-					originalHeight 			= image.data('originalHeight'),
-					originalWidth 			= image.data('originalWidth'),
-					helperOriginalHeight 	= image.data('helperOriginalHeight'),
-					helperOriginalWidth 	= image.data('helperOriginalWidth'),
-					frame 					= $helper.find('.zoomhelper_frame'),
-					frameWrap 				= $helper.find('.zoomhelper_framewrapper'),
-					imageWrapMaxHeight 		= parseInt($imageWrap.css('max-height').split('px')[0]);
+				var imageAnimateOpts        = {}, 
+					imageParentAnimateOpts  = {}, 
+					frameAnimateOpts        = {},
+					borderDimensions        = {},
+					image                   = instance.data('currentImage'),
+					hiddenAreas             = image.data('hiddenAreas'),
+					helperImage             = image.data('helperImage'),
+					originalHeight          = image.data('originalHeight'),
+					originalWidth           = image.data('originalWidth'),
+					helperOriginalHeight    = image.data('helperOriginalHeight'),
+					helperOriginalWidth     = image.data('helperOriginalWidth'),
+					frame                   = instance.data('helper').find('.zoomhelper_frame'),
+					frameWrap               = instance.data('helper').find('.zoomhelper_framewrapper'),
+					imageWrapMaxHeight      = parseInt(instance.data('imageWrap').css('max-height').split('px')[0]);
 
 				if (image.height()+imageHeightAdder < imageWrapMaxHeight && image.width()+imageWidthAdder < $(window).width()*0.98) {
 					imageAnimateOpts = {
@@ -528,22 +526,22 @@
 
 			// Globalize some stuff
 			instance.data({
-				'opts' 					: opts,
-				'mousedown' 			: mouseDown,
-				'mouseup' 				: mouseUp,
-				'handler' 				: handler,
-				'keydown_bound' 		: false,
-				'imageMouseMove' 		: imageMouseMove,
-				'keyDownHandler' 		: keyDownHandler,
-				'image_collection' 		: [],
-				'imageViewerWrapper'	: $imageViewerWrapper,
-				'prev' 					: $prev,
-				'next' 					: $next,
-				'imageWrap' 			: $imageWrap,
-				'helper' 				: $helper,
-				'topbar' 				: $topbar,
-				'frame' 				: $frame,
-				'frameWrapper' 			: $frameWrapper
+				'opts'                  : opts,
+				'mousedown'             : mouseDown,
+				'mouseup'               : mouseUp,
+				'handler'               : handler,
+				'keydown_bound'         : false,
+				'imageMouseMove'        : imageMouseMove,
+				'keyDownHandler'        : keyDownHandler,
+				'image_collection'      : [],
+				'imageViewerWrapper'    : $imageViewerWrapper,
+				'prev'                  : $prev,
+				'next'                  : $next,
+				'imageWrap'             : $imageWrap,
+				'helper'                : $helper,
+				'topbar'                : $topbar,
+				'frame'                 : $frame,
+				'frameWrapper'          : $frameWrapper
 			});
 
 			// Add images already contained in the applied element if automatic_add is set to true
@@ -729,13 +727,13 @@
 				.load(function () {
 					var self = this;
 					$(self).data({
-						'maxHeight' 		: this.height,
-						'maxWidth' 			: this.width,
-						'originalHeight' 	: this.height,
-						'originalWidth' 	: this.width,
-						'animationWidth' 	: this.width*0.3,
-						'animationHeight' 	: this.height*0.3,
-						'hiddenAreas' 		: [0, 0]
+						'maxHeight'         : this.height,
+						'maxWidth'          : this.width,
+						'originalHeight'    : this.height,
+						'originalWidth'     : this.width,
+						'animationWidth'    : this.width*0.3,
+						'animationHeight'   : this.height*0.3,
+						'hiddenAreas'       : [0, 0]
 					});
 
 					if ($(self).data('maxHeight') > $(window).height()-100 || $(self).data('maxWidth') > $(window).width()*0.95)
@@ -754,13 +752,13 @@
 					});
 				})
 				.appendTo(instance.data('imageWrap'))
-				.attr('src', 				opts.alt_src ? opts.alt_src : $(opts.img).attr('src'))
-				.bind('dragstart', 			function (e) { return false; }) // remove the default drag that firefox (and possibly other browsers?) applies.
-				.on('DOMMouseScroll', 		instance.data('handler')) 		// firefox
-				.on('mousewheel', 			instance.data('handler')) 		// chrome (and others?)
-				.on('mousedown', 			instance.data('mousedown'))
-				.on('mouseup', 				instance.data('mouseup'))
-				.on('mousemove', 			instance.data('imageMouseMove'))			
+				.attr('src',                opts.alt_src ? opts.alt_src : $(opts.img).attr('src'))
+				.bind('dragstart',          function (e) { return false; }) // remove the default drag that firefox (and possibly other browsers?) applies.
+				.on('DOMMouseScroll',       instance.data('handler'))       // firefox
+				.on('mousewheel',           instance.data('handler'))       // chrome (and others?)
+				.on('mousedown',            instance.data('mousedown'))
+				.on('mouseup',              instance.data('mouseup'))
+				.on('mousemove',            instance.data('imageMouseMove'))			
 				.hide();
 		},
 		getEventBinding : function ()
