@@ -252,7 +252,7 @@
 			*/
 			function zoomIn(imageHeightAdder, imageWidthAdder) 
 			{
-				if (typeof(imageHeightAdder) == undefined || typeof(imageWidthAdder) == undefined) return;
+				if (imageHeightAdder == undefined || imageWidthAdder == undefined) return;
 
 				var imageAnimateOpts        = {}, 
 				    imageParentAnimateOpts  = {}, 
@@ -361,7 +361,7 @@
 			*/
 			function zoomOut(imageHeightAdder, imageWidthAdder)
 			{
-				if (typeof(imageHeightAdder) == undefined || typeof(imageWidthAdder) == undefined) return;
+				if (imageHeightAdder == undefined || imageWidthAdder == undefined) return;
 
 				var imageAnimateOpts        = {}, 
 				    imageParentAnimateOpts  = {}, 
@@ -539,7 +539,7 @@
 			}
 
 			//======================================================//
-			//                      BINDINGS					    //
+			//                      BINDINGS                        //
 			//======================================================//
 			
 			$next.on('click', next);
