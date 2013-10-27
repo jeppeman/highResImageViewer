@@ -7,6 +7,10 @@ to be viewed in a nice way.
 This is still rather untested, but the core functionality should be working. If you have any suggested additions
 or find any bugs, please report it to me.
 
+Q: Why the additional style.css and fonts folder?
+
+A: SVG + and - icons 
+
 How it works
 ======
 It's like any image viewer in essence, what is cool about it is the functionality for images with high resolution.
@@ -84,5 +88,5 @@ sized image.
 Other options that might be provided to the addImage method are:
 <ul>
 <li><code>{ "cb_show" : function() {} }</code> - callback which is executed when the specified image is shown</li>
-<li><code>{ "filename" : "Some name" }</code> - By default the actual file name will be displayed, but you can display it with another text
+<li><code>{ "filename" : "Some name" }</code> - By default the actual file name will be displayed
 </ul>
