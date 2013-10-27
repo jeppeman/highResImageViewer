@@ -34,7 +34,7 @@ Method summary
 Demo
 =======
 Here follows a demonstration of the plugin:
-www.kebabstinens.se/imagedemo
+www.kebabnormal.se/imagedemo
 
 Usage
 ======
