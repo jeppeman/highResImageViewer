@@ -560,9 +560,9 @@
 		// Show dem titties, made this global in case the user wants to bind the showing of the viewer to a different event than doubleclick.
 		show : function (opts)
 		{
-			var img 	 = opts.img,	
-				filename = opts.filename,
-				instance = this;
+			var img      = opts.img,	
+			    filename = opts.filename,
+			    instance = this;
 
 			if (!instance.data('imageViewerWrapper').is(':visible')) {
 				instance.data('imageViewerWrapper').parent('div').fadeIn(500);
