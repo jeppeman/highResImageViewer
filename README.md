@@ -7,8 +7,7 @@ to be viewed in a nice way.
 This is still rather untested, but the core functionality should be working. If you have any suggested additions
 or find any bugs, please report it to me.
 
-Q: Why the additional style.css and fonts folder?
-
+Q: Why the additional style.css and fonts folder?<br>
 A: SVG + and - icons 
 
 How it works
