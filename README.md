@@ -74,7 +74,7 @@ the automatic addition; let's say you have a thumbnail version of an image with 
 thumbnail version on the web page, and the actual sized one in the viewer. This is achieved by doing this:
 
 <pre>
-var image = $("&lt;img&gt;", { "src" : "thumbnail" }).appendTo($(".image-container")); // This could also be any image
+var image = $("&lt;img&gt;", { "src" : "thumbnail_src" }).appendTo($(".image-container")); // This could also be any image
 $(".image-container").sexyImageViewer("addImage", { 
   "img" : image,
   "alt_src" : actual_image_source // actual_image_source being the source of actual image, go figure
