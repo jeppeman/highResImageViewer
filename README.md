@@ -88,3 +88,8 @@ Other options that might be provided to the addImage method are:
 <li><code>{ "cb_show" : function() {} }</code> - callback which is executed when the specified image is shown</li>
 <li><code>{ "filename" : "Some name" }</code> - By default the actual file name will be displayed
 </ul>
+
+Browser support
+======
+It should be working in most relatively modern browsers, I've tested it down to IE 8 a while ago back, some bugs may have
+appeared since then though, but all in all the cross browser support should be rather consistent.
