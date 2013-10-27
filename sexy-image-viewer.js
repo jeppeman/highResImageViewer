@@ -595,14 +595,9 @@
 				instance.data('next').hide();
 			}
 
-			// Reset helper stuff			
-			if (instance.data('helper')) {
-				instance.data('helper').find('.zoomhelper img').hide();
-				instance.data('helper').show();
-				instance.data('frame').css({'left': '2px', 'top' : '20px'});
-				instance.data('frameWrapper').css('border-width', 0);
-			}
-
+			instance.data('helper').hide();
+			instance.data('helper').find('.zoomhelper img').hide();
+			
 			instance.data('topbar').find('.filename').html((filename ? filename : img.attr('src').substr(img.attr('src').lastIndexOf('/')+1)));
 			// very temporary
 			instance.data('topbar').find('.file_extra_info').empty();
@@ -638,6 +633,11 @@
 						.width(200)
 						.height(img.data('maxHeight')*(200/img.data('maxWidth')));
 				}
+
+				// Reset helper stuff			
+				instance.data('helper').show();
+				instance.data('frame').css({'left': '2px', 'top' : '20px'});
+				instance.data('frameWrapper').css('border-width', 0);
 			}
 			else
 			{
@@ -709,43 +709,39 @@
 				imageCollection = instance.data('image_collection'),
 				$img = $('<img>');
 
-			$img	
-				.load(function () {
-					var self = this;
-					$(self).data({
-						'maxHeight'         : this.height,
-						'maxWidth'          : this.width,
-						'originalHeight'    : this.height,
-						'originalWidth'     : this.width,
-						'animationWidth'    : this.width*0.3,
-						'animationHeight'   : this.height*0.3,
-						'hiddenAreas'       : [0, 0]
-					});
+			$img.load(function () {
+				var self = this;
+				$(self).data({
+					'maxHeight'         : this.height,
+					'maxWidth'          : this.width,
+					'originalHeight'    : this.height,
+					'originalWidth'     : this.width,
+					'animationWidth'    : this.width*0.3,
+					'animationHeight'   : this.height*0.3,
+					'hiddenAreas'       : [0, 0]
+				});
+					
+				$(self).data('helperImage', $('<img>').load(function () { 	
+					instance.data('imageWrap').removeClass('loading');	
+					$(this).appendTo(instance.data('helper').find('.zoomhelper')).hide();
+				}).attr('src', $(self).attr('src')));
+					
+				$(this).attr('data-image-index', imageCollection.length);
+				imageCollection.push({ 'img' : $img, 'filename' : opts.filename, 'cb_show' : opts.cb_show });
 
-					if ($(self).data('maxHeight') > $(window).height()-100 || $(self).data('maxWidth') > $(window).width()*0.95)
-					{
-						$(self).data('helperImage', $('<img>').load(function () { 	
-							instance.data('imageWrap').removeClass('loading');	
-							$(this).appendTo(instance.data('helper').find('.zoomhelper')).hide();
-						}).attr('src', $(self).attr('src')));
-					}
-
-					$(this).attr('data-image-index', imageCollection.length);
-					imageCollection.push({ 'img' : $img, 'filename' : opts.filename, 'cb_show' : opts.cb_show });
-
-					$(opts.img).on(instance.data('opts')['show_event_binding'], function () {
-						methods.show.apply(instance, [ imageCollection[$img.data('image-index')] ]);
-					});
-				})
-				.appendTo(instance.data('imageWrap'))
-				.attr('src',                opts.alt_src ? opts.alt_src : $(opts.img).attr('src'))
-				.bind('dragstart',          function (e) { return false; }) // remove the default drag that firefox (and possibly other browsers?) applies.
-				.on('DOMMouseScroll',       instance.data('handler'))       // firefox
-				.on('mousewheel',           instance.data('handler'))       // chrome (and others?)
-				.on('mousedown',            instance.data('mousedown'))
-				.on('mouseup',              instance.data('mouseup'))
-				.on('mousemove',            instance.data('imageMouseMove'))			
-				.hide();
+				$(opts.img).on(instance.data('opts')['show_event_binding'], function () {
+					methods.show.apply(instance, [ imageCollection[$img.data('image-index')] ]);
+				});
+			})
+			.appendTo(instance.data('imageWrap'))
+			.attr('src',                opts.alt_src ? opts.alt_src : $(opts.img).attr('src'))
+			.bind('dragstart',          function (e) { return false; }) // remove the default drag that firefox (and possibly other browsers?) applies.
+			.on('DOMMouseScroll',       instance.data('handler'))       // firefox
+			.on('mousewheel',           instance.data('handler'))       // chrome (and others?)
+			.on('mousedown',            instance.data('mousedown'))
+			.on('mouseup',              instance.data('mouseup'))
+			.on('mousemove',            instance.data('imageMouseMove'))			
+			.hide();
 		},
 		getEventBinding : function ()
 		{
