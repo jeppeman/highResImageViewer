@@ -1,8 +1,7 @@
 sexyImageViewer
 ===============
 
-A jQuery image viewing plugin with cool functionality that enables images which resolutions are higher than that of the current window
-to be viewed in a nice way.
+A jQuery image viewing plugin with cool functionality that enables a nice viewing of images which resolutions are higher than that of the current window.
 
 This is still rather untested, but the core functionality should be working. If you have any suggested additions
 or find any bugs, please report it to me.
@@ -12,7 +11,7 @@ A: SVG + and - icons
 
 How it works
 ======
-It's like any image viewer in essence, what is cool about it is the functionality for images with high resolution.
+It's like any image viewer in essence, the cool thing about it is the functionality for images with high resolutions.
 When first displaying an image which has a higher resolution than that of the window it is scaled down to fit inside the window, but you have the ability to zoom the image to see specific parts of it in its actual resolution. 
 
 When the image is zoomed, you can move to a different place in the image by clicking and dragging inside the image, or doing the same thing inside the little helper image which resides in the top left corner of the screen if an image with high resolution is currently being displayed.
