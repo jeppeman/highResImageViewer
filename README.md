@@ -31,6 +31,11 @@ Method summary
 <li>prev - Go to the previous image of the current instance</li>
 </ul>
 
+Demo
+=======
+Here follows a demonstration of the plugin:
+www.kebabstinens.se/imagedemo
+
 Usage
 ======
 The plugin is supposed to be instantiated on an element which contains images, although it doesn't necessarily need to. You can instantiate it on any element you want really, and just add images to the plugin instance whenever you feel like it.
