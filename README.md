@@ -20,7 +20,7 @@ The plugin is supposed to be instantiated on an element which contains images, a
 
 <b>Usage example 1:</b>
 
-Let's say you have a container which looks like this:
+Let's say you have a container with two images like the following:
 
 <code>
   \<div class="image-container"\>
@@ -33,7 +33,7 @@ If you just apply the viewer to the outer container like this:
 
 <code> $(".image-container").sexyImageViewer(); </code>
 
-The plugin will be instantiated, and if you double click on any of the images it will be shown in the viewer.
+The plugin will be instantiated, and if you double click on any of the images they will be shown in the viewer.
 If you want to bind the showing of the viewer to a different event than double click you have the option to do so by
 doing something like this: <code> $(".image-container").sexyImageViewer({ "show_event_binding" : "mouseover" }); </code>.
 
