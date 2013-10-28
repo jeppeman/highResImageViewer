@@ -3,7 +3,7 @@ sexyImageViewer
 
 A jQuery image viewing plugin with cool functionality that enables a nice viewing of images which resolutions are higher than that of the current window.
 
-This is still rather untested, but the core functionality should be working. If you have any suggested additions
+This is still rather untested, so don't be too surprised if you run into some bugs. :) The core functionality should be working however, If you have any suggested additions
 or find any bugs, please report it to me.
 
 Q: Why the additional style.css and fonts folder?<br>
