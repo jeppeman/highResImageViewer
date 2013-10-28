@@ -36,6 +36,10 @@ Demo
 Here follows a demonstration of the plugin:
 www.kebabnormal.se/imagedemo
 
+You may have to wait a few seconds for the larger images to load before you can double click them at the moment though, 
+I will make them double clickable as soon as they are called upon instenad of after they are loaded and add some loading gif in the near future, but for now you'll just
+have to wait a few seconds. :)
+
 Usage
 ======
 The plugin is supposed to be instantiated on an element which contains images, although it doesn't necessarily need to. You can instantiate it on any element you want really, and just add images to the plugin instance whenever you feel like it.
