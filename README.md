@@ -44,6 +44,13 @@ Usage
 ======
 The plugin is supposed to be instantiated on an element which contains images, although it doesn't necessarily need to. You can instantiate it on any element you want really, and just add images to the plugin instance whenever you feel like it.
 
+Current keybindings are:
+<ul>
+<li>Escape - close the viewer</li>
+<li>Arrow right - go to the next image</li>
+<li>Arrow left - go to the previous image</li>
+<ul>
+
 <b>Usage example 1:</b>
 
 Let's say you have a container with two images like the following:
