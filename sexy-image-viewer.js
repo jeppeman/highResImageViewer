@@ -729,6 +729,11 @@
 				$(this).attr('data-image-index', imageCollection.length);
 				imageCollection.push({ 'img' : $img, 'filename' : opts.filename, 'cb_show' : opts.cb_show });
 
+				if (!instance.data('prev').is(':visible') && imageCollection.length > 1) {
+					instance.data('prev').show();
+					instance.data('next').show();
+				}
+
 				$(opts.img).on(instance.data('opts')['show_event_binding'], function () {
 					methods.show.apply(instance, [ imageCollection[$img.data('image-index')] ]);
 				});
