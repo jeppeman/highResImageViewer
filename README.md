@@ -36,7 +36,7 @@ Demo
 Here follows a demonstration of the plugin:
 www.kebabnormal.se/imagedemo
 
-Since the actual sized images are really large they may take some time to load. :)
+Since the actual sized images are large and the server on which the demo resides on is really slow, they may take some time to load. :)
 
 Usage
 ======
