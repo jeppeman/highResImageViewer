@@ -564,9 +564,15 @@
 			    filename = opts.filename,
 			    instance = this;
 
+			// Reset stuff
+			if (instance.data('currentImage'))
+				instance.data('currentImage').hide();
+
+			if (instance.data('loadCheck'))
+				clearInterval(instance.data('loadCheck'));
+
 			if (!instance.data('imageViewerWrapper').is(':visible')) {
 				instance.data('imageViewerWrapper').parent('div').fadeIn(500);
-
 				// Scale down site contents
 				var $bc = $('body').children(':not(.imageviewer_wrapper, .zoomhelper_wrapper)');
 				$('body')
@@ -579,89 +585,99 @@
 				$('body').css('overflow-y', 'hidden');
 			}
 
-			if (!instance.data('keydown_bound'))
-				$('body').on('keydown.sexyimageviewer', instance.data('keyDownHandler')); 
-
-			instance.data('topbar').find('.extras').empty();
-
-			opts.cb_show();
-
-			if (instance.data('image_collection').length > 1) {
-				instance.data('prev').show();
-				instance.data('next').show();
-			}
-			else {
-				instance.data('prev').hide();
-				instance.data('next').hide();
-			}
-
+			instance.data('topbar').find('.filename').html((filename ? filename : img.attr('src').substr(img.attr('src').lastIndexOf('/')+1)));
 			instance.data('helper').hide();
 			instance.data('helper').find('.zoomhelper img').hide();
+			instance.data('imageWrap').addClass('loading');
+			instance.data('topbar').find('.extras').empty();
+			instance.data('currentImage', img);
+
+			// If the image has finished loading, keep going. Otherwise, wait for it to load and have a cold beverage
+			if (img[0].complete)
+				keep_going();
+			else {
+				instance.data('loadCheck', setInterval(function () {
+					if (img[0].complete) {
+						clearInterval(instance.data('loadCheck'));
+						keep_going();
+					}
+				}, 100));
+			}
 			
-			instance.data('topbar').find('.filename').html((filename ? filename : img.attr('src').substr(img.attr('src').lastIndexOf('/')+1)));
-			// very temporary
-			instance.data('topbar').find('.file_extra_info').empty();
-				
-			// Set heights and widths to the image and give it all the necessary zooming functionality
-			if (img.data('maxHeight') > $(window).height()-100 || img.data('maxWidth') > $(window).width()*0.95)
-			{
-				// If the height and/or width of the image is larger than the window height/width
-				// the helper is shown and sizing adjustments are applied to the image.
-				img.data('minHeight', img.data('originalHeight')*(($(window).height()-120)/img.data('originalHeight')));
-				img.data('minWidth', img.data('originalWidth')*(($(window).height()-120)/img.data('originalHeight')));
-				if (img.data('maxHeight') >= img.data('maxWidth'))
+			function keep_going() {
+				instance.data('imageWrap').removeClass('loading');
+			
+				if (!instance.data('keydown_bound'))
+					$('body').on('keydown.sexyimageviewer', instance.data('keyDownHandler')); 
+
+				opts.cb_show();
+
+				if (instance.data('image_collection').length > 1) {
+					instance.data('prev').show();
+					instance.data('next').show();
+				}
+				else {
+					instance.data('prev').hide();
+					instance.data('next').hide();
+				}
+						
+				// Set heights and widths to the image and give it all the necessary zooming functionality
+				if (img.data('maxHeight') > $(window).height()-100 || img.data('maxWidth') > $(window).width()*0.95)
 				{
-					img.data('helperImage').height(200);
-					img.data('helperImage').width(img.data('maxWidth')*(200/img.data('maxHeight')));
-					img.data('helperOriginalHeight', 200);
-					img.data('helperOriginalWidth', img.data('maxWidth')*(200/img.data('maxHeight')));
-					instance.data('frame').height(198);
-					instance.data('frame').width(img.data('maxWidth')*(200/img.data('maxHeight'))-2);
-					instance.data('frameWrapper')
-						.height(200)
-						.width(img.data('maxWidth')*(200/img.data('maxHeight')));
+					// If the height and/or width of the image is larger than the window height/width
+					// the helper is shown and sizing adjustments are applied to the image.
+					img.data('minHeight', img.data('originalHeight')*(($(window).height()-120)/img.data('originalHeight')));
+					img.data('minWidth', img.data('originalWidth')*(($(window).height()-120)/img.data('originalHeight')));
+					if (img.data('maxHeight') >= img.data('maxWidth'))
+					{
+						img.data('helperImage').height(200);
+						img.data('helperImage').width(img.data('maxWidth')*(200/img.data('maxHeight')));
+						img.data('helperOriginalHeight', 200);
+						img.data('helperOriginalWidth', img.data('maxWidth')*(200/img.data('maxHeight')));
+						instance.data('frame').height(198);
+						instance.data('frame').width(img.data('maxWidth')*(200/img.data('maxHeight'))-2);
+						instance.data('frameWrapper')
+							.height(200)
+							.width(img.data('maxWidth')*(200/img.data('maxHeight')));
+					}
+					else
+					{
+						img.data('helperImage').width(200);
+						img.data('helperImage').height(img.data('maxHeight')*(200/img.data('maxWidth')));
+						img.data('helperOriginalWidth', 200);
+						img.data('helperOriginalHeight', img.data('maxHeight')*(200/img.data('maxWidth')));
+						instance.data('frame').width(198);
+						instance.data('frame').height(img.data('maxHeight')*(200/img.data('maxWidth'))-2);
+						instance.data('frameWrapper')
+							.width(200)
+							.height(img.data('maxHeight')*(200/img.data('maxWidth')));
+					}
+
+					// Reset helper stuff			
+					instance.data('helper').show();
+					instance.data('frame').css({'left': '2px', 'top' : '20px'});
+					instance.data('frameWrapper').css('border-width', 0);
+					img.data('helperImage').show();
 				}
 				else
 				{
-					img.data('helperImage').width(200);
-					img.data('helperImage').height(img.data('maxHeight')*(200/img.data('maxWidth')));
-					img.data('helperOriginalWidth', 200);
-					img.data('helperOriginalHeight', img.data('maxHeight')*(200/img.data('maxWidth')));
-					instance.data('frame').width(198);
-					instance.data('frame').height(img.data('maxHeight')*(200/img.data('maxWidth'))-2);
-					instance.data('frameWrapper')
-						.width(200)
-						.height(img.data('maxHeight')*(200/img.data('maxWidth')));
+					// The image gets its normal size otherwise.
+					img.data('minHeight', img.data('originalHeight'));
+					img.data('minWidth', img.data('originalWidth'));
 				}
 
-				// Reset helper stuff			
-				instance.data('helper').show();
-				instance.data('frame').css({'left': '2px', 'top' : '20px'});
-				instance.data('frameWrapper').css('border-width', 0);
+				instance.data('imageWrap').css({ 
+					'min-height': img.data('minHeight'), 
+					'height' : img.data('minHeight'), 
+					'max-height' : $(window).height()-100,
+					'min-width' : img.data('minWidth'), 
+					'width' : img.data('minWidth') 
+				});
+
+				img.siblings().hide();
+
+				img.show().css({'height' : '100%', 'width' : '100%', 'left' : 0, 'top' : 0 });
 			}
-			else
-			{
-				// The image gets its normal size otherwise.
-				img.data('minHeight', img.data('originalHeight'));
-				img.data('minWidth', img.data('originalWidth'));
-			}
-
-			instance.data('imageWrap').css({ 
-				'min-height': img.data('minHeight'), 
-				'height' : img.data('minHeight'), 
-				'max-height' : $(window).height()-100,
-				'min-width' : img.data('minWidth'), 
-				'width' : img.data('minWidth') 
-			});
-
-			img.siblings().hide();
-
-			img.show().css({'height' : '100%', 'width' : '100%', 'left' : 0, 'top' : 0 });
-
-			if (img.data('helperImage'))
-				img.data('helperImage').show();
-
-			instance.data('currentImage', img);
 		},
 		// Hide the current viewer
 		hide : function (opts)
@@ -706,8 +722,8 @@
 			$.extend(opts, _opts);
 
 			var instance = this,
-				imageCollection = instance.data('image_collection'),
-				$img = $('<img>');
+			    imageCollection = instance.data('image_collection'),
+			    $img = $('<img>');
 
 			$img.load(function () {
 				var self = this;
@@ -721,25 +737,17 @@
 					'hiddenAreas'       : [0, 0]
 				});
 					
-				$(self).data('helperImage', $('<img>').load(function () { 	
-					instance.data('imageWrap').removeClass('loading');	
-					$(this).appendTo(instance.data('helper').find('.zoomhelper')).hide();
-				}).attr('src', $(self).attr('src')));
-					
-				$(this).attr('data-image-index', imageCollection.length);
-				imageCollection.push({ 'img' : $img, 'filename' : opts.filename, 'cb_show' : opts.cb_show });
-
 				if (!instance.data('prev').is(':visible') && imageCollection.length > 1) {
 					instance.data('prev').show();
 					instance.data('next').show();
 				}
-
-				$(opts.img).on(instance.data('opts')['show_event_binding'], function () {
-					methods.show.apply(instance, [ imageCollection[$img.data('image-index')] ]);
-				});
 			})
+			.data('helperImage', $('<img>').load(function () { 	
+				$(this).appendTo(instance.data('helper').find('.zoomhelper')).hide();
+			}).attr('src', opts.alt_src ? opts.alt_src : $(opts.img).attr('src')))
 			.appendTo(instance.data('imageWrap'))
 			.attr('src',                opts.alt_src ? opts.alt_src : $(opts.img).attr('src'))
+			.attr('data-image-index',   imageCollection.length)
 			.bind('dragstart',          function (e) { return false; }) // remove the default drag that firefox (and possibly other browsers?) applies.
 			.on('DOMMouseScroll',       instance.data('handler'))       // firefox
 			.on('mousewheel',           instance.data('handler'))       // chrome (and others?)
@@ -747,6 +755,12 @@
 			.on('mouseup',              instance.data('mouseup'))
 			.on('mousemove',            instance.data('imageMouseMove'))			
 			.hide();
+
+			imageCollection.push({ 'img' : $img, 'filename' : opts.filename, 'cb_show' : opts.cb_show });
+
+			$(opts.img).on(instance.data('opts')['show_event_binding'], function () {
+				methods.show.apply(instance, [ imageCollection[$img.data('image-index')] ]);
+			});
 		},
 		getEventBinding : function ()
 		{
