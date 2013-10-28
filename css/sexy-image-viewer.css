@@ -10,7 +10,7 @@
 .imageviewer_wrapper > div > a.previous i { display: block; height: 100%; width: 100%; background-image: url("../img/misc.png"); background-repeat: no-repeat; background-size: auto auto; background-position: -585px -75px;}
 .imageviewer_wrapper > div > a.next i {  display: block; height: 100%; width: 100%; background-image: url("../img/misc.png"); background-repeat: no-repeat; background-size: auto auto; background-position: -501px -75px;}
 .imageviewer_wrapper > div > div.imagewrap { min-height: 700px; min-width: 800px; max-height:850px; overflow: hidden; max-width: 98%; margin: 0px auto; position: relative;}
-.imageviewer_wrapper > div > div.imagewrap.loading { background: url("/!shared/img/ajax-loader-2.gif") no-repeat center center;}
+.imageviewer_wrapper > div > div.imagewrap.loading { background: url("../img/ajax-loader-2.gif") no-repeat center center;}
 .imageviewer_wrapper > div > div > img { margin: 0px auto; position: absolute; top: 0; left: 0; } 
 .imageviewer_wrapper > div > div.topbar { position: absolute; top: 0; left: 0; width: 100%; height: 40px; background: #000; display: table;}
 .imageviewer_wrapper > div > div.bottombar { position: absolute; bottom: 0;  left: 0; width: 100%; height: 40px; background: #000; display: block; }
