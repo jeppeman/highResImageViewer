@@ -49,7 +49,7 @@ Current keybindings are:
 <li>Escape - close the viewer</li>
 <li>Arrow right - go to the next image</li>
 <li>Arrow left - go to the previous image</li>
-<ul>
+</ul>
 
 <b>Usage example 1:</b>
 
