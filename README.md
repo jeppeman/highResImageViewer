@@ -36,9 +36,7 @@ Demo
 Here follows a demonstration of the plugin:
 www.kebabnormal.se/imagedemo
 
-You may have to wait a few seconds for the larger images to load before you can double click them at the moment though, 
-I will make them double clickable as soon as they are called upon instenad of after they are loaded and add some loading gif in the near future, but for now you'll just
-have to wait a few seconds. :)
+Since the actual sized images are really large they may take some time to load. :)
 
 Usage
 ======
