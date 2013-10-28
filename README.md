@@ -3,7 +3,7 @@ sexyImageViewer
 
 A jQuery image viewing plugin with cool functionality that enables a nice viewing of images which resolutions are higher than that of the current window.
 
-This is still rather untested, but the core functionality should be working. If you have any suggested additions
+This is still rather untested, so don't be too surprised if you run into some bugs. :) The core functionality should be working however, If you have any suggested additions
 or find any bugs, please report it to me.
 
 Q: Why the additional style.css and fonts folder?<br>
@@ -36,9 +36,19 @@ Demo
 Here follows a demonstration of the plugin:
 www.kebabnormal.se/imagedemo
 
+Since the actual sized images are large and the server on which the demo resides is really slow, they may take some time to load. :)
+For a better demo, you could download the source.
+
 Usage
 ======
 The plugin is supposed to be instantiated on an element which contains images, although it doesn't necessarily need to. You can instantiate it on any element you want really, and just add images to the plugin instance whenever you feel like it.
+
+Current keybindings are:
+<ul>
+<li>Escape - close the viewer</li>
+<li>Arrow right - go to the next image</li>
+<li>Arrow left - go to the previous image</li>
+</ul>
 
 <b>Usage example 1:</b>
 
