@@ -557,7 +557,7 @@
 			$frame.on('mousemove', frameMouseMove);
 			$frame.bind('dragstart', function(e) { return false; });
 		},
-		// Show dem titties, made this global in case the user wants to bind the showing of the viewer to a different event than doubleclick.
+		// Made this global in case the user wants to bind the showing of the viewer to a different event than doubleclick.
 		show : function (opts)
 		{
 			var img      = opts.img,	
