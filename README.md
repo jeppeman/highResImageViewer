@@ -1,4 +1,4 @@
-sexyImageViewer
+highResImageViewer
 ===============
 
 A jQuery image viewing plugin with cool functionality that enables a nice viewing of images which resolutions are higher than that of the current window.
@@ -63,13 +63,13 @@ Let's say you have a container with two images like the following:
 
 If you just apply the viewer to the outer container like this:
 
-<code> $(".image-container").sexyImageViewer(); </code>
+<code> $(".image-container").highResImageViewer(); </code>
 
 The plugin will be instantiated, and if you double click on any of the images they will be shown in the viewer.
 If you want to bind the showing of the viewer to a different event than double click you have the option to do so by
 doing something like this: 
 
-<code> $(".image-container").sexyImageViewer({ "show_event_binding" : "mouseover" }); </code>.
+<code> $(".image-container").highResImageViewer({ "show_event_binding" : "mouseover" }); </code>.
 
 If you do not want images inside the container to be added automatically you can provide the option <code> { "automatic_add" : false } </code>
 
@@ -80,7 +80,7 @@ or dynamically generated ones, this would be achieved by doing this:
 
 <pre>
 var image = $("&lt;img&gt;", { "src" : "somesource1" }).appendTo($(".image-container")); // This could also be any image
-$(".image-container").sexyImageViewer("addImage", { "img" : image });
+$(".image-container").highResImageViewer("addImage", { "img" : image });
 </pre>
 
 Note that the image doesn't have to be appended to anything to be added to the viewer. Using this approach has some benefits over
@@ -89,7 +89,7 @@ thumbnail version on the web page, and the actual sized one in the viewer. This 
 
 <pre>
 var image = $("&lt;img&gt;", { "src" : "thumbnail_src" }).appendTo($(".image-container")); // This could also be any image
-$(".image-container").sexyImageViewer("addImage", { 
+$(".image-container").highResImageViewer("addImage", { 
   "img" : image,
   "alt_src" : actual_image_source // actual_image_source being the source of actual image, go figure
 });
